@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Webpage</title>
+</head>
+<body>
+
+<nav>
+</nav>
+<h1>Welcome to My Webpage</h1>
+<p>This is a basic HTML template for a webpage.</p>
+<form>
+    <input type="submit" value="Submit">
+    <label for="input1">Input 1:</label>
+    <input onkeyup="doSomething()" type="text" id="input1" name="input1"><br><br>
+    <label for="input2">Input 2:</label>
+    <input onkeyup="doSomething()" type="text" id="input2" name="input2"><br><br>
+
+    <label for="whattodo">whattodo</label>
+    <input onkeyup="doSomething()" type="text" id="whattodo" name="whattodo"><br><br>
+    <label for="input3">Input Result:</label>
+    <input type="text" id="input3" name="input3"><br><br>
+    <input type="submit" value="Submit">
+</form>
+<!-- Your content goes here -->
+<script>
+   var submitButtons = document.querySelectorAll('input[type="submit"]');
+   for(var i = 0 ; i < submitButtons.length; i++){
+       submitButton = submitButtons[i];
+       submitButton.addEventListener("click", function(event) {
+           event.preventDefault();
+           doSomething();
+       });
+   }
+
+   function calculateOperationValue(operation){
+            var finalValue = '';
+            if(operation.includes('add') || operation.includes('addd') || operation.includes('add') || operation.includes('ad')){
+                finalValue = 'addition';
+            }
+       if(operation.includes('sub') || operation.includes('subvv') || operation.includes('su') || operation.includes('s')){
+           finalValue = 'subtraction';
+       }
+
+
+        return finalValue;
+   }
+   function doSomething(){
+       var input1value = parseInt(document.getElementById('input1').value);
+       var input2value = parseInt(document.getElementById('input2').value);
+       var isInputValid = false;
+       if(isNaN(input1value) || isNaN(input2value)){
+           isInputValid  = false;
+       }else{
+           isInputValid  = true;
+       }
+
+       var operation = document.getElementById("whattodo").value;
+
+      var  operation_actual_value =  calculateOperationValue(operation);
+
+       if(isInputValid){
+
+
+           switch (operation_actual_value) {
+               case "addition":
+                   // Perform addition operation
+                   var resultvalue = input1value + input2value;
+                   break;
+               case "subtraction":
+                   // Perform subtraction operation
+                   var resultvalue = input1value - input2value;
+                   break;
+               case "multiplication":
+                   // Perform multiplication operation
+                   var resultvalue = input1value * input2value;
+                   break;
+               case "division":
+                   // Perform division operation
+                   var resultvalue = input1value / input2value;
+                   break;
+               default:
+                   console.log("Invalid operation selected");
+                   break;
+           }
+           document.getElementById('input3').value = resultvalue;
+       }else{
+           console.log('invalid input ');
+       }
+   }
+</script>
+</body>
+</html>
