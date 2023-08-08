@@ -1,0 +1,63 @@
+.navbar {
+    width: 100%;
+    height: 76px;
+    background-color: white;
+    position: fixed;
+    display: flex;
+    justify-content: start;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px;
+}
+
+.nav {
+    width: 100%;
+    background-color: #fcb729;
+    padding-top: 115px;
+    height: 34rem;
+}
+
+.calculator {
+    font-style: normal;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 50px;
+    text-align: center;
+    color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.col {
+    display: flex;
+    gap: 98px;
+    height: 119px;
+    justify-content: center;
+}
+
+.btn{
+    background: #fb0;
+    box-shadow: 0 4px 5px rgba(255,187,0,0.25);
+    border-radius: 5px;
+    font-family: Muli;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 27px;
+    line-height: 23px;
+    text-align: center;
+    color: #000;
+    padding: 16px;
+    cursor: pointer;
+    width: 603px;
+}
+.result{
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    border: 0px solid;
+    border-radius: 7px;
+    font-size: 30px;
+}
