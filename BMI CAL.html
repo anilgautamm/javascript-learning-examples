@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <link rel="stylesheet" href="style1.css" type="text/css">
+
+</head>
+
+<body style="margin: 0;">
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <p style="padding-left: 14px; color: black;display: flex;font-size: 37px;margin-top: 12px;">BMI
+                    Calculator</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="nav">
+
+        <h1 style="padding-left: 25px;display: flex;justify-content: center;">Use BMI Calculator Online: Calculate BMI
+            for Men, Women & Kids</h1>
+
+        <img src="https://www.godigit.com/content/dam/godigit/directportal/en/contenthm/bmi-calculator.jpg"
+            style=" width: 651px; padding-left: 368px;"alt>
+
+        <p
+            style="font-weight:bolder; color:white; display:flex;justify-content: center;font-size: larger;font-style: oblique;">
+            Ever noticed the doctors jotting down your weight and height every time you visit for a routine check-up?
+            This data is used to calculate the Body Mass Index (BMI).</p>
+        <p
+            style="font-weight:bolder; color: white;display: flex;justify-content: center;font-size: larger;font-style: oblique;">
+            Ever noticed the doctors jotting down your weight and height every time you visit for a routine check-up?
+            This data is used to calculate the Body Mass Index (BMI).</p>
+    </div>
+    </div>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="text-sm-center">
+                    <h1 class="calculator"><div style="width:294px; height:7px; background-color:#fcb729; margin-right: 10px;"></div>BMI Calculator<div style="width:294px;height:7px;margin-top: 5px;background-color: #fcb729; margin-left: 10px;"></div></h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="calculation">
+        <div class="container text-center">
+            <div>
+                <div class="col">
+                    <img src="https://d2h44aw7l5xdvz.cloudfront.net/calculators/bmi-calculator/male.svg">
+                    <img src="https://d2h44aw7l5xdvz.cloudfront.net/calculators/bmi-calculator/female.svg">
+                </div>
+                <div style="padding-top: 16px; padding-left: 375px;">
+                    <div class="radio-button">
+                        <input type="radio" id="male" name="gender" value="male" style=" margin-left: 162px;">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female" style="margin-left: 151px;">
+                        <label for="female">Female</label>
+                    </div>
+                    <div style="padding-top: 16px;padding-bottom: 13px;">
+                        <fieldset style=" width: 61%; margin: 0; padding: 0;">
+                            <legend style="margin-left: 10px;">Age:</legend>
+                            <input type="text" id="age" name="Age" class="placeholder:text-gray-400;"
+                                placeholder="Enter Age"
+                                style=" width: 96%; height: 110%; padding: 12px 5px; border: 0px; outline: none;"
+                               >
+                        </fieldset>
+                    </div>
+                    <div style="padding-bottom: 12px;">
+                        <fieldset style=" width: 61%; margin: 0; padding: 0;">
+                            <legend style="margin-left: 10px;">Height</legend>
+                            <input type="text" id="height" name="Height" class="placeholder:text-gray-400;"
+                                placeholder="Enter Height (In Metres)"
+                                style=" width: 96%; height: 110%; padding: 12px 5px; border: 0px; outline: none;">
+                        </fieldset>
+                    </div>
+                    <div>
+                        <fieldset style=" width: 61%; margin: 0; padding: 0;">
+                            <legend style="margin-left: 10px;">Weight</legend>
+                            <input type="text" id="weight" name="Weight" class="placeholder:text-gray-400;"
+                                placeholder="Enter Weight (In Kilograms)"
+                                style=" width: 96%; height: 110%; padding: 12px 5px; border: 0px; outline: none;">
+                        </fieldset>
+                    </div>
+                    <div style=" padding-top: 16px; padding-bottom: 10px;">
+                        <button onclick="calculateBMI()" class="btn">Calculate</button>
+                    </div>
+                </div>
+                <div class="result" id="result">
+                </div>
+            </div>
+
+
+    </section>
+
+
+
+    <script>
+            function calculateBMI() {
+                var weight = parseFloat(document.getElementById("weight").value);
+                var height = parseFloat(document.getElementById("height").value);
+                var age = parseFloat(document.getElementById("age").value);
+               var result = document.getElementById("result")
+    
+                if (isNaN(weight) || isNaN(height) || isNaN(age)) {
+                    document.getElementById("result").innerHTML = "Please enter valid values.";
+                    result.style.color="white";
+                    result.style.backgroundColor="black";
+                    return;
+                }
+    
+                var bmi = weight / (height * height);
+                var Result = "";
+    
+                if (bmi < 18.5) {
+                    Result = "Underweight";
+                    result.style.backgroundColor="yellow";
+                } else if (bmi < 24.9) {
+                    Result = "Normal weight";
+                    result.style.backgroundColor="Green";
+
+                } else if (bmi > 29.9) {
+                    Result = "Overweight";
+                    result.style.backgroundColor="red";
+                } 
+    
+                document.getElementById("result").innerHTML = "Your BMI is: " + bmi.toFixed(2) + "<br>Result: " + Result;
+            }
+        </script>
+
+</body>
+
+</html>
