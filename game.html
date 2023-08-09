@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Memory Game</title>
+
+  <link rel="stylesheet" href="./game.css">
+</head>
+<body>
+  <header>
+    <div style="background-color: #181b1d;">
+        <h1>Memory Game</h1>
+        <br>
+    </div>
+    <div>
+        <p>This is a memory game in which user has to to match pairs of cards by flipping them over. </p>
+    </div>
+</header>
+<div class="main">
+  <div class="container">
+  <section class="memory-game" style="margin-bottom:30px ; margin-top: 10px;">
+    <div class="memory-card" data-framework="Adidas">
+      <img class="front-face" src="/Memory_Game/images/Original_Adidas_logo.svg.png" alt="Adidas">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Nike">
+      <img class="front-face" src="/Memory_Game/images/nike.png" alt="Nike">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Butterfly">
+      <img class="front-face" src="/Memory_Game/images/butterfly.png" alt="Butterfly">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    
+    <div class="memory-card" data-framework="Discord">
+      <img class="front-face" src="/Memory_Game/images/discord.png" alt="Discord">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Butterfly">
+      <img class="front-face" src="/Memory_Game/images/butterfly.png" alt="Butterfly">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Discord">
+      <img class="front-face" src="/Memory_Game/images/discord.png" alt="Discord">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Nike">
+      <img class="front-face" src="/Memory_Game/images/nike.png" alt="Nike">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Adidas">
+            <img class="front-face" src="/Memory_Game/images/Original_Adidas_logo.svg.png" alt="Adidas">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Joker">
+            <img class="front-face" src="/Memory_Game/images/joker.jpg" alt="Joker">
+      <img class="back-face" src="/Memory_Game/images/Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+  </section>
+<div class="info">
+<p>Matches: <span id="match-counter">0</span></p>
+<p>Clicks: <span id="click-counter">0</span></p>
+<button class="reset-button" id="reset-button" >Reset Game</button>
+</div>
+</div>
+</main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
