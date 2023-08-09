@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Memory Game</title>
+
+  <link rel="stylesheet" href="./game.css">
+</head>
+<body>
+  <header>
+    <div style="background-color: #181b1d;">
+        <h1>Memory Game</h1>
+        <br>
+    </div>
+    <div>
+        <p>This is a memory game in which user has to to match pairs of cards by flipping them over. </p>
+    </div>
+</header>
+<div class="main">
+  <div class="container">
+  <section class="memory-game" style="margin-bottom:30px ; margin-top: 10px;">
+    <div class="memory-card" data-framework="Adidas">
+      <img class="front-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Original_Adidas_logo.svg/779px-Original_Adidas_logo.svg.png" alt="Adidas">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Nike">
+      <img class="front-face" src="https://i.pinimg.com/564x/c4/a9/58/c4a958d8cf52dcb987d6614115881536.jpg" alt="Nike">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Puma">
+      <img class="front-face" src="data:image/png;base64,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" alt="Puma">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    
+    <div class="memory-card" data-framework="Levis">
+      <img class="front-face" src="data:image/png;base64,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" alt="Levis">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Puma">
+      <img class="front-face" src="data:image/png;base64,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" alt="Puma">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Levis">
+      <img class="front-face" src="data:image/png;base64,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" alt="Levis">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Nike">
+      <img class="front-face" src="https://i.pinimg.com/564x/c4/a9/58/c4a958d8cf52dcb987d6614115881536.jpg" alt="Nike">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Adidas">
+            <img class="front-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Original_Adidas_logo.svg/779px-Original_Adidas_logo.svg.png" alt="Adidas">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+    <div class="memory-card" data-framework="Adidas">
+            <img class="front-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Original_Adidas_logo.svg/779px-Original_Adidas_logo.svg.png" alt="Joker">
+      <img class="back-face" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/2048px-Solid_grey.svg.png" alt="Memory Card">
+    </div>
+  
+  </section>
+<div class="info">
+<p>Matches: <span id="match-counter">0</span></p>
+<p>Clicks: <span id="click-counter">0</span></p>
+<button class="reset-button" id="reset-button" >Reset Game</button>
+</div>
+</div>
+</main>
+
+  <script src="./game.js"></script>
+</body>
+</html>
