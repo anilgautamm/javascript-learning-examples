@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="To.css">
+</head>
+
+<body>
+    <div class="sticky">
+        <header > Task Manager</header>
+    </div>
+    <div>
+        <nav>
+            <div class="center">
+                <button class="round-btn" onclick="toggleTaskList('person1')">Person 1</button>
+                <button class="round-btn" onclick="toggleTaskList('person2')">Person 2</button>
+                <p id="hi"></p>
+            </div>
+        </nav>
+    </div>
+
+    <div id="person1-list" class="header" style="display: none;">
+        <h2 style="margin:5px">My To Do List Person 1</h2>
+        <input type="text" id="person1-input" placeholder="Title...">
+        <span onclick="newElement('person1')" class="addBtn">Add</span>
+        <div class="plus" style="text-align: center;">
+            <p style="margin-top: 80px;">Total Tasks: <span id="person1-total-count">0</span></p>  
+            <p>Completed Tasks: <span id="person1-completed-count">0</span></p>
+            
+        </div>
+        <div  style="text-align: right; padding: 10px;">
+            <button class="clear-all" onclick="clearAllTasks()">Clear All Tasks</button>
+        </div>
+
+    <ul id="person1-UL">
+    </ul>
+  </div>
+  
+    <div id="person2-list" class="header" style="display: none;">
+        <h2 style="margin:5px">My To Do List Person 2</h2>
+        <input type="text" id="person2-input" placeholder="Title...">
+        <span onclick="newElement('person2')" class="addBtn">Add</span>
+        <div class="plus" style="text-align: center;">
+            <p style="margin-top: 80px;" >Total Tasks: <span id="person2-total-count">0</span></p>
+            <p>Completed Tasks: <span id="person2-completed-count">0</span></p>
+        </div>
+        <div  style="text-align: right; padding: 10px;">
+            <button class="clear-all" onclick="clearAllTasks1()">Clear All Tasks</button>
+        </div>
+
+
+    <ul id="person2-UL">
+    </ul>
+  </div>
+
+    <script>
+        // Function to toggle the display of task list
+        function toggleTaskList(person) {
+            var personList = document.getElementById(person + '-list');
+            if (personList.style.display === "none") {
+                personList.style.display = "block";
+            } else {
+                personList.style.display = "none";
+            }
+        }
+
+        // Function to handle task creation and storage
+        function newElement(person) {
+            var inputElement = document.getElementById(person + "-input");
+            var inputValue = inputElement.value;
+            if (inputValue === '') {
+                alert("You must write something!");
+                return;
+            }
+
+            var ul = document.getElementById(person + "-UL");
+            var li = document.createElement("li");
+            li.innerHTML = '<span class="task-title">' + inputValue + '</span>' +
+                '<span class="close" onclick="removeTask(this)">&times;</span>';
+            ul.appendChild(li);
+            inputElement.value = "";
+
+            updateTaskCounts(person);
+            storeTasks(person);
+        }
+
+        // Function to clear all tasks for a person
+       function clearAllTasksForPerson(person) {
+             var personList = document.getElementById(person + "-UL");
+             while (personList.firstChild) {
+             personList.removeChild(personList.firstChild);
+        }
+            updateTaskCounts(person);
+            storeTasks(person);
+         }
+
+        // Function to clear all tasks for every person
+        function clearAllTasks() {
+             clearAllTasksForPerson('person1');
+            
+        }
+        function clearAllTasks1() {
+             clearAllTasksForPerson('person2');
+            
+        }
+
+        // Function to remove a task
+        function removeTask(element) {
+            var taskItem = element.parentElement;
+            var person = taskItem.parentElement.id.replace("-UL", "");
+            taskItem.remove();
+
+            updateTaskCounts(person);
+            storeTasks(person);
+        }
+        
+
+        // Function to edit a task
+        function editTask(taskItem) {
+            var taskTitle = taskItem.getElementsByClassName("task-title")[0];
+            taskTitle.contentEditable = true;
+            taskTitle.focus();
+
+            taskTitle.addEventListener("blur", function () {
+                taskTitle.contentEditable = false;
+                var person = taskItem.parentElement.id.replace("-UL", "");
+                updateTaskCounts(person);
+                storeTasks(person);
+            });
+
+            taskTitle.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    taskTitle.blur();
+                }
+            });
+        }
+
+        // Function to toggle task completion
+        function toggleCompleted(taskItem) {
+            taskItem.classList.toggle("checked");
+            var person = taskItem.parentElement.id.replace("-UL", "");
+            updateTaskCounts(person);
+            storeTasks(person);
+            console.log("rakh");
+        }
+        
+
+        // Function to update task counts and store tasks in local storage
+        function updateTaskCounts(person) {
+            var totalTasks = 0;
+            var completedTasks = 0;
+
+            var taskItems = document.getElementById(person + "-UL").getElementsByTagName("li");
+            for (var i = 0; i < taskItems.length; i++) {
+                totalTasks++;
+                if (taskItems[i].classList.contains("checked")) {
+                    completedTasks++;
+                }
+            }
+
+            document.getElementById(person + "-total-count").innerText = totalTasks;
+            document.getElementById(person + "-completed-count").innerText = completedTasks;
+        }
+
+        // Function to store tasks in local storage
+        function storeTasks(person) {
+            var taskItems = document.getElementById(person + "-UL").getElementsByTagName("li");
+            var tasks = [];
+
+            for (var i = 0; i < taskItems.length; i++) {
+                var taskTitle = taskItems[i].getElementsByClassName("task-title")[0].innerText;
+                var isCompleted = taskItems[i].classList.contains("checked");
+                tasks.push({
+                    title: taskTitle,
+                    completed: isCompleted
+                });
+            }
+
+            localStorage.setItem(person + "-tasks", JSON.stringify(tasks));
+        }
+
+        // Function to load tasks from local storage on page load
+
+        function loadTasks(person) {
+            var tasks = JSON.parse(localStorage.getItem(person + "-tasks"));
+            if (tasks !== null && tasks.length > 0) {
+                var ul = document.getElementById(person + "-UL");
+                tasks.forEach(function(task) {
+                    var li = document.createElement("li");
+                    li.innerHTML = '<span class="task-title">' + task.title + '</span>' +
+                        '<span class="editBtn" onclick="editTask(this)">Edit</span>' +
+                        '<span class="close" onclick="removeTask(this)">&times;</span>';
+                    if (task.completed) {
+                        li.classList.add("checked");
+                    }
+                    ul.appendChild(li);
+                });
+            }
+            updateTaskCounts(person);
+        }
+
+        
+        function loadTasks(person) {
+            var tasks = JSON.parse(localStorage.getItem(person + "-tasks"));
+            if (tasks !== null && tasks.length > 0) {
+                var ul = document.getElementById(person + "-UL");
+                tasks.forEach(function(task) {
+                    var li = document.createElement("li");
+                    li.innerHTML = '<span class="task-title">' + task.title + '</span>' +
+                        '<span class="close" onclick="removeTask(this)">&times;</span>';
+                    if (task.completed) {
+                        li.classList.add("checked");
+                    }
+                    li.addEventListener("click", function() {
+                        toggleCompleted(this);
+                    });
+                    li.addEventListener("dblclick", function() {
+                        editTask(this);
+                    });
+                    ul.appendChild(li);
+                });
+            }
+            updateTaskCounts(person);
+        }
+     
+        // Load tasks for each person on page load
+        loadTasks('person1');
+        loadTasks('person2');
+    </script>
+</body>
+
+</html>
